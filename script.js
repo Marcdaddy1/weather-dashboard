@@ -1,5 +1,5 @@
 
-var apiKey = 'f05ae6a9d22f48e3ae3225444232803';
+var apiKey = '050eaf0f1bca0e249b76d56bbaa65ce3';
 var searchFormEl = document.querySelector('#search-form');
 var searchInputEl = document.querySelector('#search-input');
 var historyEl = document.querySelector('#history');
@@ -10,7 +10,7 @@ var cities = [];
 // Function to fetch weather data from API
 function getWeatherData(city) {
   // API URL with city name and API key
-  var apiUrl = 'http://api.weatherapi.com/v1' + city + '&units=metric&appid=' + apiKey;
+  var apiUrl = 'http://api.openweathermap.org/data/2.5/weather' + city + '&units=metric&appid=' + apiKey;
   
   // Fetch current weather info
   fetch(apiUrl)
@@ -26,14 +26,14 @@ function getWeatherData(city) {
       // Display current weather info
       todayEl.innerHTML = '<h2>' + data.name + '</h2>' +
                           '<p>' + moment().format('MMMM Do YYYY') + '</p>' +
-                          '<img src="http://api.weatherapi.com/v1' + data.weather[0].icon + '.png" alt="' + data.weather[0].description + '">' +
+                          '<img src="http://api.openweathermap.org/data/2.5/weather' + data.weather[0].icon + '.png" alt="' + data.weather[0].description + '">' +
                           '<p>Temperature: ' + data.main.temp + ' °C</p>' +
                           '<p>Humidity: ' + data.main.humidity + '%</p>' +
                           '<p>Wind Speed: ' + data.wind.speed + ' m/s</p>';
       
       // Fetch 5-day forecast info
 
-      apiUrl = 'http://api.weatherapi.com/v1' + city + '&units=metric&appid=' + apiKey;
+      apiUrl = 'http://api.openweathermap.org/data/2.5/weather' + city + '&units=metric&appid=' + apiKey;
       return fetch(apiUrl);
     })
     .then(function (response) {
@@ -51,7 +51,7 @@ function getWeatherData(city) {
       for (var i = 0; i < data.list.length; i += 8) {
         forecastHtml += '<div class="col-md-2">' +
                         '<p>' + moment(data.list[i].dt_txt).format('MMMM Do YYYY') + '</p>' +
-                        '<img src="http://api.weatherapi.com/v1' + data.list[i].weather[0].icon + '.png" alt="' + data.list[i].weather[0].description + '">' +
+                        '<img src="http://api.openweathermap.org/data/2.5/weather' + data.list[i].weather[0].icon + '.png" alt="' + data.list[i].weather[0].description + '">' +
                         '<p>Temperature: ' + data.list[i].main.temp + ' °C</p>' +
                         '<p>Humidity: ' + data.list[i].main.humidity + '%</p>' +
                         '</div>';
